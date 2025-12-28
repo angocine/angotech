@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANGOTECH - Painel Profissional do Administrador</title>
+<style>
+  :root {
+    --bg: #0a0f2c;
+    --panel: #121a4d;
+    --panel-hover: #1e2a7a;
+    --accent: #00cc44;
+    --error: #ff4444;
+    --text-light: #fff;
+    --input-bg: #fff;
+  }
+
+  body {margin:0; font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text-light);}
+  header {background: var(--panel); padding: 20px; text-align:center; font-size:24px; font-weight:bold;}
+  .container {max-width: 1000px; margin:20px auto; padding:15px; background: var(--panel); border-radius:10px;}
+  h2 {margin-top:0;}
+  input, textarea {padding:10px; width:95%; max-width:500px; border-radius:8px; border:none; margin-bottom:10px; color:#000;}
+  button {padding:10px 15px; border:none; border-radius:6px; cursor:pointer; font-weight:bold; margin:5px; transition: 0.2s;}
+  .add-btn {background: var(--accent); color:#fff;} .add-btn:hover {background: #00aa33;}
+  .edit-btn {background:#ffaa00; color:#000;} .edit-btn:hover {background:#ffcc00;}
+  .del-btn {background: var(--error); color:#fff;} .del-btn:hover {background:#ff0000;}
+  .success-msg, .error-msg {padding:10px; border-radius:6px; margin-bottom:10px; display:none; font-weight:bold;}
+  .success-msg {background: #00cc44; color:#fff;}
+  .error-msg {background: #ff4444; color:#fff;}
+  table {width:100%; border-collapse:collapse; margin-top:15px; color:#fff;}
+  table th, table td {padding:10px; border-bottom:1px solid #1e2a7a; text-align:left;}
+  table th {background: #121a4d;}
+  img {max-width:100px; border-radius:6px;}
+  /* Modal */
+  #modal {position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.85); display: none; justify-content:center; align-items:center; padding:10px;}
+  .modal-box {background: var(--panel); padding:20px; width:100%; max-width:500px; border-radius:12px; color:white; box-sizing:border-box;}
+  @media(max-width:600px){ input,textarea {font-size:14px;} table th, table td {font-size:14px;} }
+</style>
+</head>
+<body>
+
+<header>ANGOTECH - Painel ADM Profissional</header>
+
+<div class="container">
+  <h2>Adicionar Novo Artigo</h2>
+
+  <div class="success-msg" id="successMsg">Artigo publicado com sucesso!</div>
+  <div class="error-msg" id="errorMsg">Erro ao publicar. Verifique os campos!</div>
+
+  <input id="titulo" placeholder="Título do artigo">
+  <textarea id="descricao" placeholder="Descrição completa"></textarea>
+  <input id="imagem" placeholder="URL da Imagem (opcional)">
+  <button class="add-btn" onclick="adicionar()">Publicar Artigo</button>
+
+  <h2>Conteúdos Existentes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Imagem</th>
+        <th>Clique</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="lista"></tbody>
+  </table>
+</div>
+
+<!-- Modal de Edição -->
+<div id="modal">
+  <div class="modal-box">
+    <h3>Editar Artigo</h3>
+    <input id="editTitulo" placeholder="Título">
+    <textarea id="editDescricao" placeholder="Descrição"></textarea>
+    <input id="editImagem" placeholder="URL da Imagem (opcional)">
+    <button class="edit-btn" onclick="salvarEdicao()">Salvar Alterações</button>
+    <button class="del-btn" onclick="fecharModal()">Cancelar</button>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBFl9aICOuTSqiFhuPOUQ0H_LsBzNqG4vc",
+    authDomain: "angotech-c4dfe.firebaseapp.com",
+    projectId: "angotech-c4dfe",
+    storageBucket: "angotech-c4dfe.firebasestorage.app",
+    messagingSenderId: "161116074660",
+    appId: "1:161116074660:web:f933ed6bf376ecf0cdac31",
+    measurementId: "G-Q5HTHNYY9H"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  let editId = null;
+
+  function showMessage(type,msg){
+    const el = type==="success"?document.getElementById("successMsg"):document.getElementById("errorMsg");
+    el.textContent=msg; el.style.display="block";
+    setTimeout(()=>el.style.display="none",3000);
+  }
+
+  async function adicionar(){
+    const titulo = document.getElementById("titulo").value.trim();
+    const descricao = document.getElementById("descricao").value.trim();
+    const imagem = document.getElementById("imagem").value.trim();
+    if(!titulo || !descricao) return showMessage("error","Preencha todos os campos!");
+    await db.collection("artigos").add({titulo, descricao, imagem, clics:0});
+    document.getElementById("titulo").value="";
+    document.getElementById("descricao").value="";
+    document.getElementById("imagem").value="";
+    showMessage("success","Artigo publicado com sucesso!");
+    carregarLista();
+  }
+
+  async function carregarLista(){
+    const lista = document.getElementById("lista");
+    lista.innerHTML="<tr><td colspan='4'>Carregando...</td></tr>";
+    const snap = await db.collection("artigos").get();
+    lista.innerHTML="";
+    snap.forEach(doc=>{
+      const data = doc.data();
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${data.titulo}</td>
+        <td>${data.imagem?'<img src="'+data.imagem+'" alt="Imagem">':'-'}</td>
+        <td>${data.clics || 0}</td>
+        <td>
+          <button class="edit-btn" onclick="abrirModal('${doc.id}','${data.titulo}','${data.descricao}','${data.imagem || ''}')">Editar</button>
+          <button class="del-btn" onclick="apagar('${doc.id}')">Apagar</button>
+        </td>
+      `;
+      lista.appendChild(tr);
+    });
+  }
+
+  function abrirModal(id,titulo,descricao,imagem){
+    editId = id;
+    document.getElementById("editTitulo").value = titulo;
+    document.getElementById("editDescricao").value = descricao;
+    document.getElementById("editImagem").value = imagem;
+    document.getElementById("modal").style.display="flex";
+  }
+
+  function fecharModal(){ editId=null; document.getElementById("modal").style.display="none"; }
+
+  async function salvarEdicao(){
+    if(!editId) return;
+    const titulo = document.getElementById("editTitulo").value.trim();
+    const descricao = document.getElementById("editDescricao").value.trim();
+    const imagem = document.getElementById("editImagem").value.trim();
+    if(!titulo || !descricao) return showMessage("error","Preencha todos os campos!");
+    await db.collection("artigos").doc(editId).update({titulo, descricao, imagem});
+    showMessage("success","Artigo atualizado com sucesso!");
+    fecharModal();
+    carregarLista();
+  }
+
+  async function apagar(id){
+    if(!confirm("Deseja mesmo apagar este artigo?")) return;
+    await db.collection("artigos").doc(id).delete();
+    showMessage("success","Artigo apagado com sucesso!");
+    carregarLista();
+  }
+
+  carregarLista();
+</script>
+</body>
+</html>

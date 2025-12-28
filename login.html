@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login ADM - ANGOTECH</title>
+<meta name="description" content="Login do Administrador do site ANGOTECH.">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f6f8;
+  color:#333;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+
+header {
+  background:#0a0f2c;
+  color:#fff;
+  padding:15px;
+  text-align:center;
+}
+header h1 {margin:0;font-size:26px;}
+
+.page-content{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.login-container {
+  background:#fff;
+  padding:30px;
+  border-radius:8px;
+  max-width:400px;
+  width:100%;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.login-container h2{
+  color:#0a0f2c;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.login-container input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border:1px solid #ccc;
+  border-radius:4px;
+  font-size:16px;
+}
+
+.login-container button{
+  width:100%;
+  padding:12px;
+  background:#0a0f2c;
+  color:#fff;
+  border:none;
+  font-size:16px;
+  cursor:pointer;
+  border-radius:4px;
+  margin-top:10px;
+}
+
+.login-container button:hover{
+  background:#1e2a7a;
+}
+
+#errorMsg{
+  color:red;
+  text-align:center;
+  margin-top:10px;
+}
+
+footer {
+  background:#0a0f2c;
+  color:#fff;
+  text-align:center;
+  padding:15px;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>ANGOTECH</h1>
+  <p>Login do Administrador</p>
+</header>
+
+<div class="page-content">
+  <div class="login-container">
+    <h2>Login ADM</h2>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Senha" required>
+    <button onclick="loginADM()">Entrar</button>
+    <div id="errorMsg"></div>
+  </div>
+</div>
+
+<footer>
+  © 2025 ANGOTECH • Tecnologia para Angola
+</footer>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBFl9aICOuTSqiFhuPOUQ0H_LsBzNqG4vc",
+  authDomain: "angotech-c4dfe.firebaseapp.com",
+  projectId: "angotech-c4dfe",
+  storageBucket: "angotech-c4dfe.firebasestorage.app",
+  messagingSenderId: "161116074660",
+  appId: "1:161116074660:web:f933ed6bf376ecf0cdac31",
+  measurementId: "G-Q5HTHNYY9H"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+// Função de login
+function loginADM(){
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const errorMsg = document.getElementById("errorMsg");
+  errorMsg.textContent = "";
+
+  if(!email || !password){
+    errorMsg.textContent = "Preencha todos os campos!";
+    return;
+  }
+
+  auth.signInWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Login bem-sucedido
+    window.location.href = "adm.html"; // redireciona para a página principal do ADM
+  })
+  .catch((error) => {
+    errorMsg.textContent = error.message;
+  });
+}
+</script>
+
+</body>
+</html>

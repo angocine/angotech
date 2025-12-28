@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANGOTECH - Tecnologia para Angola</title>
+<meta name="description" content="ANGOTECH é um site de tecnologia focado em Angola: internet, apps, dinheiro online e dicas práticas.">
+
+<style>
+*{box-sizing:border-box}
+
+/* 🔥 FUNCIONALIDADE NOVA */
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f6f8;
+  color:#333;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* 🔥 HEADER */
+header {
+  background:#0a0f2c;
+  color:#fff;
+  padding:15px;
+  text-align:center;
+  position:relative;
+}
+header h1 {margin:0;font-size:26px;}
+/* Hamburger */
+.hamburger {
+  position:absolute;
+  left:15px;
+  top:18px;
+  font-size:26px;
+  cursor:pointer;
+}
+
+/* 🔥 NAVBAR */
+nav {
+  background:#121a4d;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+nav a {
+  color:#fff;
+  padding:12px 15px;
+  text-decoration:none;
+  font-size:14px;
+}
+nav a:hover {background:#1e2a7a;}
+
+/* 🔥 SIDEBAR LATERAL */
+#sidebar {
+  height:100%;
+  width:0;
+  position:fixed;
+  z-index:1000;
+  top:0;
+  left:0;
+  background:#0a0f2c;
+  overflow-x:hidden;
+  transition:0.3s;
+  padding-top:60px;
+}
+#sidebar a {
+  padding:10px 20px;
+  text-decoration:none;
+  font-size:18px;
+  color:#fff;
+  display:block;
+}
+#sidebar a:hover {background:#1e2a7a;}
+#sidebar .closebtn {
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:30px;
+  cursor:pointer;
+}
+
+/* 🔥 PAGE CONTENT */
+.page-content{
+  flex:1;
+}
+
+.container {
+  max-width:1100px;
+  margin:auto;
+  padding:15px;
+  display:grid;
+  grid-template-columns:3fr 1fr;
+  gap:15px;
+}
+
+.post {
+  background:#fff;
+  padding:15px;
+  margin-bottom:15px;
+  border-radius:6px;
+}
+.post h2 {margin-top:0;color:#0a0f2c;}
+.post p {line-height:1.6;}
+.post img {
+  width:100%;
+  max-height:200px;
+  object-fit:cover;
+  margin-bottom:10px;
+  border-radius:6px;
+}
+.post button {
+  background:#0a0f2c;
+  color:#fff;
+  border:none;
+  padding:10px 15px;
+  cursor:pointer;
+  border-radius:4px;
+}
+.post button:hover {background:#1e2a7a;}
+
+aside {
+  background:#fff;
+  padding:15px;
+  border-radius:6px;
+  height:fit-content;
+}
+
+.ad {
+  background:#eaeaea;
+  text-align:center;
+  padding:20px;
+  margin:15px 0;
+  font-size:14px;
+  color:#666;
+  border:1px dashed #999;
+}
+
+footer {
+  background:#0a0f2c;
+  color:#fff;
+  text-align:center;
+  padding:15px;
+  font-size:14px;
+}
+
+@media(max-width:768px){
+  .container{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <span class="hamburger" onclick="openSidebar()">&#9776;</span>
+  <h1>ANGOTECH</h1>
+  <p>Tecnologia explicada para Angola</p>
+</header>
+
+<!-- 🔥 SIDEBAR -->
+<div id="sidebar">
+  <span class="closebtn" onclick="closeSidebar()">&times;</span>
+  <a href="login.html">Login ADM</a>
+</div>
+
+<nav>
+  <a href="index.html">Início</a>
+  <a href="sobre.html">Sobre</a>
+  <a href="contacto.html">Contacto</a>
+  <a href="privacidade.html">Privacidade</a>
+  <a href="dmca.html">DMCA</a>
+  <a href="termos.html">Termos de Uso</a>
+  <a href="paginamodelo.html">Mais informações</a>
+</nav>
+
+<div class="page-content">
+  <div class="container">
+    <main>
+      <div class="ad">🔥 Espaço para ANÚNCIO (Topo do Conteúdo)</div>
+      <div id="listaArtigos">Carregando conteúdos…</div>
+      <div class="ad">📢 Espaço para ANÚNCIO (Fim do Conteúdo)</div>
+    </main>
+
+    <aside>
+      <h3>Publicidade</h3>
+      <div class="ad">Banner 300x250</div>
+
+      <h3>Mais lidos</h3>
+      <ul id="maisLidos"></ul>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  © 2025 ANGOTECH • Tecnologia para Angola
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBFl9aICOuTSqiFhuPOUQ0H_LsBzNqG4vc",
+  authDomain: "angotech-c4dfe.firebaseapp.com",
+  projectId: "angotech-c4dfe",
+  storageBucket: "angotech-c4dfe.firebasestorage.app",
+  messagingSenderId: "161116074660",
+  appId: "1:161116074660:web:f933ed6bf376ecf0cdac31",
+  measurementId: "G-Q5HTHNYY9H"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+function setCookie(name,value,days){
+  let expires="";
+  if(days){
+    const d=new Date();
+    d.setTime(d.getTime()+(days*24*60*60*1000));
+    expires="; expires="+d.toUTCString();
+  }
+  document.cookie=name+"="+value+expires+"; path=/";
+}
+
+async function carregarArtigos(){
+  const lista = document.getElementById("listaArtigos");
+  const maisLidosEl = document.getElementById("maisLidos");
+  lista.innerHTML = "";
+
+  try{
+    const snapshot = await db.collection("artigos").get();
+    if(snapshot.empty){ lista.innerHTML="Nenhum conteúdo disponível."; return; }
+
+    let count=0;
+    snapshot.forEach(doc=>{
+      const data = doc.data();
+      const titulo = data.titulo || "Sem título";
+      const descricao = data.descricao ? data.descricao.substring(0,140) : "Sem descrição";
+
+      const card = document.createElement("div");
+      card.className="post";
+      card.innerHTML = `
+        ${data.imagem ? `<img src="${data.imagem}">` : ""}
+        <h2>${titulo}</h2>
+        <p>${descricao}...</p>
+        <button onclick="abrirConteudo('${doc.id}')">Ler mais</button>
+      `;
+      lista.appendChild(card);
+
+      if(count<5){
+        const li = document.createElement("li");
+        li.textContent = titulo;
+        maisLidosEl.appendChild(li);
+        count++;
+      }
+    });
+
+  } catch(e){
+    lista.innerHTML = "Erro ao carregar artigos: "+e.message;
+  }
+}
+
+function abrirConteudo(id){
+  setCookie("conteudoId", id, 1);
+  window.location.href="conteudo.html";
+}
+
+// 🔥 SIDEBAR FUNCTIONS
+function openSidebar(){
+  document.getElementById("sidebar").style.width = "250px";
+}
+function closeSidebar(){
+  document.getElementById("sidebar").style.width = "0";
+}
+
+carregarArtigos();
+</script>
+</body>
+</html>

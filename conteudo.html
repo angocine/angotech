@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANGOTECH - Conteúdo</title>
+<meta name="description" content="Conteúdos de tecnologia para Angola.">
+
+<style>
+body {
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f4f6f8;
+  color:#333;
+}
+header {
+  background:#0a0f2c;
+  color:#fff;
+  padding:15px;
+  text-align:center;
+}
+header h1 {
+  margin:0;
+  font-size:26px;
+}
+.container {
+  max-width:800px;
+  margin:auto;
+  padding:20px;
+  text-align:center;
+}
+#ad-topo, #ad-fim {
+  background:#eaeaea;
+  text-align:center;
+  padding:20px;
+  margin:15px 0;
+  font-size:14px;
+  color:#666;
+  border:1px dashed #999;
+}
+button {
+  background:#0a0f2c;
+  color:#fff;
+  border:none;
+  padding:10px 15px;
+  cursor:pointer;
+  border-radius:4px;
+  margin-top:20px;
+}
+button:hover {
+  background:#1e2a7a;
+}
+#imagemConteudo {
+  max-width:90%;
+  max-height:400px;
+  object-fit:contain;
+  margin:15px auto;
+  display:block;
+  border-radius:6px;
+}
+#descricao p {
+  text-align:left;
+  line-height:1.7;
+  margin-bottom:15px;
+}
+@media(max-width:600px){
+  #imagemConteudo { max-height:250px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1 id="titulo">Título do Conteúdo</h1>
+</header>
+
+<div class="container">
+  <img id="imagemConteudo" alt="Imagem do Conteúdo">
+  <div id="ad-topo">🔥 Espaço para ANÚNCIO</div>
+  <div id="descricao">Carregando...</div>
+  <div id="ad-fim">📢 Espaço para ANÚNCIO</div>
+  <button onclick="voltar()">Voltar</button>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBFl9aICOuTSqiFhuPOUQ0H_LsBzNqG4vc",
+  authDomain: "angotech-c4dfe.firebaseapp.com",
+  projectId: "angotech-c4dfe",
+  storageBucket: "angotech-c4dfe.firebasestorage.app",
+  messagingSenderId: "161116074660",
+  appId: "1:161116074660:web:f933ed6bf376ecf0cdac31",
+  measurementId: "G-Q5HTHNYY9H"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+function voltar(){ window.history.back(); }
+
+function getCookie(name) {
+  const value = "; " + document.cookie;
+  const parts = value.split("; " + name + "=");
+  if (parts.length === 2) return parts.pop().split(";").shift();
+}
+
+async function carregarConteudo(){
+  const id = getCookie("conteudoId");
+  if(!id) return;
+  const doc = await db.collection("artigos").doc(id).get();
+  const imagemEl = document.getElementById("imagemConteudo");
+  const descricaoEl = document.getElementById("descricao");
+
+  if(doc.exists){
+    const data = doc.data();
+    document.getElementById("titulo").textContent = data.titulo;
+
+    // Exibe parágrafos corretamente
+    descricaoEl.innerHTML = data.descricao
+      .split("\n")
+      .map(paragrafo => `<p>${paragrafo}</p>`)
+      .join("");
+
+    // Exibe imagem se houver
+    if(data.imagem && data.imagem.trim() !== ""){
+      imagemEl.src = data.imagem;
+      imagemEl.style.display = "block";
+    } else {
+      imagemEl.style.display = "none";
+    }
+  } else {
+    descricaoEl.textContent = "Conteúdo não encontrado.";
+    imagemEl.style.display = "none";
+  }
+}
+
+carregarConteudo();
+</script>
+</body>
+</html>
