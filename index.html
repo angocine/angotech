@@ -6,10 +6,13 @@
 <title>ANGOTECH - Tecnologia para Angola</title>
 <meta name="description" content="ANGOTECH é um site de tecnologia focado em Angola: internet, apps, dinheiro online e dicas práticas.">
 
+<!-- Script global do AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6176188575550388"
+     crossorigin="anonymous"></script>
+
 <style>
 *{box-sizing:border-box}
 
-/* 🔥 FUNCIONALIDADE NOVA */
 body{
   margin:0;
   font-family:Arial,Helvetica,sans-serif;
@@ -20,7 +23,6 @@ body{
   flex-direction:column;
 }
 
-/* 🔥 HEADER */
 header {
   background:#0a0f2c;
   color:#fff;
@@ -29,7 +31,6 @@ header {
   position:relative;
 }
 header h1 {margin:0;font-size:26px;}
-/* Hamburger */
 .hamburger {
   position:absolute;
   left:15px;
@@ -38,7 +39,6 @@ header h1 {margin:0;font-size:26px;}
   cursor:pointer;
 }
 
-/* 🔥 NAVBAR */
 nav {
   background:#121a4d;
   display:flex;
@@ -53,7 +53,6 @@ nav a {
 }
 nav a:hover {background:#1e2a7a;}
 
-/* 🔥 SIDEBAR LATERAL */
 #sidebar {
   height:100%;
   width:0;
@@ -82,7 +81,6 @@ nav a:hover {background:#1e2a7a;}
   cursor:pointer;
 }
 
-/* 🔥 PAGE CONTENT */
 .page-content{
   flex:1;
 }
@@ -128,16 +126,6 @@ aside {
   height:fit-content;
 }
 
-.ad {
-  background:#eaeaea;
-  text-align:center;
-  padding:20px;
-  margin:15px 0;
-  font-size:14px;
-  color:#666;
-  border:1px dashed #999;
-}
-
 footer {
   background:#0a0f2c;
   color:#fff;
@@ -160,7 +148,7 @@ footer {
   <p>Tecnologia explicada para Angola</p>
 </header>
 
-<!-- 🔥 SIDEBAR -->
+<!-- SIDEBAR -->
 <div id="sidebar">
   <span class="closebtn" onclick="closeSidebar()">&times;</span>
   <a href="login.html">Login ADM</a>
@@ -179,14 +167,42 @@ footer {
 <div class="page-content">
   <div class="container">
     <main>
-      <div class="ad">🔥 Espaço para ANÚNCIO (Topo do Conteúdo)</div>
+      <!-- 🔥 ANÚNCIO MANUAL TOPO DO CONTEÚDO -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-6176188575550388"
+           data-ad-slot="1111111111"  <!-- substitua pelo seu Ad Slot -->
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
       <div id="listaArtigos">Carregando conteúdos…</div>
-      <div class="ad">📢 Espaço para ANÚNCIO (Fim do Conteúdo)</div>
+
+      <!-- 📢 ANÚNCIO MANUAL FIM DO CONTEÚDO -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-6176188575550388"
+           data-ad-slot="2222222222"  <!-- substitua pelo seu Ad Slot -->
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </main>
 
     <aside>
       <h3>Publicidade</h3>
-      <div class="ad">Banner 300x250</div>
+      <!-- BANNER 300x250 -->
+      <ins class="adsbygoogle"
+           style="display:block;width:300px;height:250px;margin:auto"
+           data-ad-client="ca-pub-6176188575550388"
+           data-ad-slot="3333333333"  <!-- substitua pelo seu Ad Slot -->
+           data-ad-format="auto"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
 
       <h3>Mais lidos</h3>
       <ul id="maisLidos"></ul>
@@ -267,7 +283,6 @@ function abrirConteudo(id){
   window.location.href="conteudo.html";
 }
 
-// 🔥 SIDEBAR FUNCTIONS
 function openSidebar(){
   document.getElementById("sidebar").style.width = "250px";
 }
