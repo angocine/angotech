@@ -6,6 +6,10 @@
 <title>ANGOTECH - Conteúdo</title>
 <meta name="description" content="Conteúdos de tecnologia para Angola.">
 
+<!-- Script global do AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6176188575550388"
+     crossorigin="anonymous"></script>
+
 <style>
 body {
   margin:0;
@@ -29,15 +33,6 @@ header h1 {
   padding:20px;
   text-align:center;
 }
-#ad-topo, #ad-fim {
-  background:#eaeaea;
-  text-align:center;
-  padding:20px;
-  margin:15px 0;
-  font-size:14px;
-  color:#666;
-  border:1px dashed #999;
-}
 button {
   background:#0a0f2c;
   color:#fff;
@@ -51,7 +46,7 @@ button:hover {
   background:#1e2a7a;
 }
 #imagemConteudo {
-  max-width:90%;
+  max-width:100%;
   max-height:400px;
   object-fit:contain;
   margin:15px auto;
@@ -62,6 +57,12 @@ button:hover {
   text-align:left;
   line-height:1.7;
   margin-bottom:15px;
+}
+.ad-container {
+  width:100%;
+  margin:15px 0;
+  display:flex;
+  justify-content:center;
 }
 @media(max-width:600px){
   #imagemConteudo { max-height:250px; }
@@ -76,9 +77,41 @@ button:hover {
 
 <div class="container">
   <img id="imagemConteudo" alt="Imagem do Conteúdo">
-  <div id="ad-topo">🔥 Espaço para ANÚNCIO</div>
+
+  <!-- 🔥 ANÚNCIO TOPO -->
+  <div class="ad-container">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6176188575550388"
+         crossorigin="anonymous"></script>
+    <!-- Memes -->
+    <ins class="adsbygoogle"
+         style="display:block;width:100%;max-width:728px;height:auto;"
+         data-ad-client="ca-pub-6176188575550388"
+         data-ad-slot="5974084587"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
   <div id="descricao">Carregando...</div>
-  <div id="ad-fim">📢 Espaço para ANÚNCIO</div>
+
+  <!-- 📢 ANÚNCIO FIM DO CONTEÚDO -->
+  <div class="ad-container">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6176188575550388"
+         crossorigin="anonymous"></script>
+    <!-- Memes -->
+    <ins class="adsbygoogle"
+         style="display:block;width:100%;max-width:728px;height:auto;"
+         data-ad-client="ca-pub-6176188575550388"
+         data-ad-slot="5974084587"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
   <button onclick="voltar()">Voltar</button>
 </div>
 
