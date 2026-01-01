@@ -3,327 +3,141 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANGOTECH - Tecnologia para Angola</title>
-<meta name="description" content="ANGOTECH é um site de tecnologia focado em Angola: internet, apps, dinheiro online e dicas práticas.">
+<title>ANGOTECH - Histórias e Tecnologia em Angola</title>
+<meta name="description" content="ANGOTECH: histórias, dicas e tecnologia em Angola. Descubra conteúdos sobre René, Angola e muito mais.">
 
-<!-- Script global do AdSense -->
+<!-- AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6176188575550388"
      crossorigin="anonymous"></script>
 
 <style>
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f4f6f8;
-  color:#333;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-}
-
-header {
-  background:#0a0f2c;
-  color:#fff;
-  padding:15px;
-  text-align:center;
-  position:relative;
-}
-header h1 {margin:0;font-size:26px;}
-.hamburger {
-  position:absolute;
-  left:15px;
-  top:18px;
-  font-size:26px;
-  cursor:pointer;
-}
-
-nav {
-  background:#121a4d;
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-nav a {
-  color:#fff;
-  padding:12px 15px;
-  text-decoration:none;
-  font-size:14px;
-}
-nav a:hover {background:#1e2a7a;}
-
-#sidebar {
-  height:100%;
-  width:0;
-  position:fixed;
-  z-index:1000;
-  top:0;
-  left:0;
-  background:#0a0f2c;
-  overflow-x:hidden;
-  transition:0.3s;
-  padding-top:60px;
-}
-#sidebar a {
-  padding:10px 20px;
-  text-decoration:none;
-  font-size:18px;
-  color:#fff;
-  display:block;
-}
-#sidebar a:hover {background:#1e2a7a;}
-#sidebar .closebtn {
-  position:absolute;
-  top:10px;
-  right:15px;
-  font-size:30px;
-  cursor:pointer;
-}
-
-.page-content{
-  flex:1;
-}
-
-.container {
-  max-width:1100px;
-  margin:auto;
-  padding:15px;
-  display:grid;
-  grid-template-columns:3fr 1fr;
-  gap:15px;
-}
-
-.post {
-  background:#fff;
-  padding:15px;
-  margin-bottom:15px;
-  border-radius:6px;
-}
-.post h2 {margin-top:0;color:#0a0f2c;}
-.post p {line-height:1.6;}
-.post img {
-  width:100%;
-  max-height:200px;
-  object-fit:cover;
-  margin-bottom:10px;
-  border-radius:6px;
-}
-.post button {
-  background:#0a0f2c;
-  color:#fff;
-  border:none;
-  padding:10px 15px;
-  cursor:pointer;
-  border-radius:4px;
-}
-.post button:hover {background:#1e2a7a;}
-
-aside {
-  background:#fff;
-  padding:15px;
-  border-radius:6px;
-  height:fit-content;
-}
-
-footer {
-  background:#0a0f2c;
-  color:#fff;
-  text-align:center;
-  padding:15px;
-  font-size:14px;
-}
-
-@media(max-width:768px){
-  .container{grid-template-columns:1fr;}
-}
+*{box-sizing:border-box;}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f6f8;color:#333;min-height:100vh;display:flex;flex-direction:column;}
+header{background:#0a0f2c;color:#fff;padding:15px;text-align:center;}
+header h1{margin:0;font-size:26px;}
+nav{background:#121a4d;display:flex;justify-content:center;flex-wrap:wrap;}
+nav a{color:#fff;padding:12px 15px;text-decoration:none;font-size:14px;}
+nav a:hover{background:#1e2a7a;}
+.container{max-width:1100px;margin:auto;padding:15px;display:grid;grid-template-columns:3fr 1fr;gap:15px;}
+.post{background:#fff;padding:15px;margin-bottom:15px;border-radius:6px;}
+.post h2{margin-top:0;color:#0a0f2c;}
+.post p{line-height:1.6;margin-bottom:5px;}
+.post button{background:#0a0f2c;color:#fff;border:none;padding:8px 12px;cursor:pointer;border-radius:4px;}
+.post button:hover{background:#1e2a7a;}
+aside{background:#fff;padding:15px;border-radius:6px;height:fit-content;}
+footer{background:#0a0f2c;color:#fff;text-align:center;padding:15px;font-size:14px;}
+@media(max-width:768px){.container{grid-template-columns:1fr;}}
 </style>
 </head>
-
 <body>
 
 <header>
-  <span class="hamburger" onclick="openSidebar()">&#9776;</span>
   <h1>ANGOTECH</h1>
-  <p>Tecnologia explicada para Angola</p>
+  <p>Histórias e tecnologia em Angola</p>
 </header>
-
-<!-- SIDEBAR -->
-<div id="sidebar">
-  <span class="closebtn" onclick="closeSidebar()">&times;</span>
-  <a href="login.html">Login ADM</a>
-</div>
 
 <nav>
   <a href="index.html">Início</a>
   <a href="sobre.html">Sobre</a>
   <a href="contacto.html">Contacto</a>
   <a href="privacidade.html">Privacidade</a>
-  <a href="dmca.html">DMCA</a>
   <a href="termos.html">Termos de Uso</a>
-  <a href="paginamodelo.html">Mais informações</a>
 </nav>
 
-<div class="page-content">
-  <div class="container">
-    <main>
-      <!-- 🔥 ANÚNCIO TOPO HORIZONTAL -->
-      <ins class="adsbygoogle"
-           style="display:block;max-width:100%;height:auto;margin:10px 0;"
-           data-ad-client="ca-pub-6176188575550388"
-           data-ad-slot="5974084587"
-           data-ad-format="horizontal"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
+<div class="container">
+  <main>
+    <!-- 🔥 ANÚNCIO TOPO -->
+    <ins class="adsbygoogle"
+         style="display:block;max-width:100%;height:90px;margin:10px 0;"
+         data-ad-client="ca-pub-6176188575550388"
+         data-ad-slot="5974084587"
+         data-ad-format="horizontal"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-      <div id="listaArtigos">Carregando conteúdos…</div>
+    <!-- 10 conteúdos estáticos -->
+    <div class="post">
+      <h2>História de René em Luanda</h2>
+      <p>René cresceu nas ruas movimentadas de Luanda e sempre sonhou em criar um projeto tecnológico que unisse tradição e inovação. <strong>Ler mais</strong></p>
+    </div>
 
-      <!-- 📢 ANÚNCIO ENTRE ARTIGOS 1-3 -->
-      <div id="ad-meio-1" style="margin:15px 0;">
-        <ins class="adsbygoogle"
-             style="display:block;max-width:100%;height:auto;"
-             data-ad-client="ca-pub-6176188575550388"
-             data-ad-slot="4444444444"
-             data-ad-format="auto"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-      </div>
+    <div class="post">
+      <h2>As cores do bairro do Kilamba</h2>
+      <p>O Kilamba é conhecido por suas cores vibrantes e pela criatividade da população local, inspirando histórias e inovações. <strong>Ler mais</strong></p>
+    </div>
 
-      <!-- 📢 ANÚNCIO ENTRE ARTIGOS 4-6 -->
-      <div id="ad-meio-2" style="margin:15px 0;">
-        <ins class="adsbygoogle"
-             style="display:block;max-width:100%;height:auto;"
-             data-ad-client="ca-pub-6176188575550388"
-             data-ad-slot="5555555555"
-             data-ad-format="auto"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-      </div>
+    <div class="post">
+      <h2>Internet em Angola: desafios e soluções</h2>
+      <p>Apesar de melhorias nos últimos anos, muitos bairros enfrentam dificuldades de conexão, levando René a criar dicas práticas para todos. <strong>Ler mais</strong></p>
+    </div>
 
-      <!-- 📢 ANÚNCIO FIM DO CONTEÚDO -->
-      <ins class="adsbygoogle"
-           style="display:block;max-width:100%;height:auto;margin:10px 0;"
-           data-ad-client="ca-pub-6176188575550388"
-           data-ad-slot="6666666666"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-    </main>
+    <div class="post">
+      <h2>Aplicativos populares em Angola</h2>
+      <p>René lista os apps mais utilizados em Angola, desde comunicação até finanças e educação. <strong>Ler mais</strong></p>
+    </div>
 
-    <aside>
-      <h3>Publicidade</h3>
-      <!-- BANNER 300x250 -->
-      <ins class="adsbygoogle"
-           style="display:block;width:300px;height:250px;margin:auto"
-           data-ad-client="ca-pub-6176188575550388"
-           data-ad-slot="7777777777"
-           data-ad-format="auto"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
+    <div class="post">
+      <h2>Histórias do Cazenga</h2>
+      <p>O Cazenga guarda memórias e narrativas que René compartilha para mostrar o lado humano da tecnologia e da vida urbana. <strong>Ler mais</strong></p>
+    </div>
 
-      <!-- BANNER 300x250 SECUNDÁRIO -->
-      <ins class="adsbygoogle"
-           style="display:block;width:300px;height:250px;margin:auto;margin-top:15px;"
-           data-ad-client="ca-pub-6176188575550388"
-           data-ad-slot="8888888888"
-           data-ad-format="auto"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
+    <div class="post">
+      <h2>Dicas de empreendedorismo digital</h2>
+      <p>René ensina como iniciar pequenos negócios online, aproveitando oportunidades locais e plataformas digitais. <strong>Ler mais</strong></p>
+    </div>
 
-      <h3>Mais lidos</h3>
-      <ul id="maisLidos"></ul>
-    </aside>
-  </div>
+    <div class="post">
+      <h2>Segurança online em Angola</h2>
+      <p>René explica cuidados essenciais para proteger dados e evitar golpes na internet, adaptados ao contexto angolano. <strong>Ler mais</strong></p>
+    </div>
+
+    <div class="post">
+      <h2>O poder das histórias locais</h2>
+      <p>As narrativas de bairros e famílias inspiram projetos e soluções tecnológicas que René compartilha para aprendizado e diversão. <strong>Ler mais</strong></p>
+    </div>
+
+    <div class="post">
+      <h2>Conexão entre tradição e tecnologia</h2>
+      <p>Como a cultura angolana influencia a criação de apps, sites e ferramentas locais. René mostra exemplos práticos. <strong>Ler mais</strong></p>
+    </div>
+
+    <div class="post">
+      <h2>Projetos inovadores de jovens angolanos</h2>
+      <p>René destaca histórias de jovens que estão mudando Angola através da tecnologia, mostrando criatividade e perseverança. <strong>Ler mais</strong></p>
+    </div>
+
+    <!-- 📢 Anúncio entre conteúdos -->
+    <ins class="adsbygoogle"
+         style="display:block;max-width:100%;height:auto;margin:15px 0;"
+         data-ad-client="ca-pub-6176188575550388"
+         data-ad-slot="4444444444"
+         data-ad-format="auto"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+  </main>
+
+  <aside>
+    <h3>Publicidade</h3>
+    <ins class="adsbygoogle"
+         style="display:block;width:300px;height:250px;margin:auto;"
+         data-ad-client="ca-pub-6176188575550388"
+         data-ad-slot="7777777777"
+         data-ad-format="auto"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+    <h3>Mais lidos</h3>
+    <ul>
+      <li>História de René em Luanda</li>
+      <li>As cores do bairro do Kilamba</li>
+      <li>Internet em Angola: desafios e soluções</li>
+      <li>Aplicativos populares em Angola</li>
+      <li>Histórias do Cazenga</li>
+    </ul>
+  </aside>
 </div>
 
 <footer>
-  © 2025 ANGOTECH • Tecnologia para Angola
+  © 2025 ANGOTECH • Histórias e tecnologia em Angola
 </footer>
 
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyBFl9aICOuTSqiFhuPOUQ0H_LsBzNqG4vc",
-  authDomain: "angotech-c4dfe.firebaseapp.com",
-  projectId: "angotech-c4dfe",
-  storageBucket: "angotech-c4dfe.firebasestorage.app",
-  messagingSenderId: "161116074660",
-  appId: "1:161116074660:web:f933ed6bf376ecf0cdac31",
-  measurementId: "G-Q5HTHNYY9H"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
-function setCookie(name,value,days){
-  let expires="";
-  if(days){
-    const d=new Date();
-    d.setTime(d.getTime()+(days*24*60*60*1000));
-    expires="; expires="+d.toUTCString();
-  }
-  document.cookie=name+"="+value+expires+"; path=/";
-}
-
-async function carregarArtigos(){
-  const lista = document.getElementById("listaArtigos");
-  const maisLidosEl = document.getElementById("maisLidos");
-  lista.innerHTML = "";
-
-  try{
-    const snapshot = await db.collection("artigos").get();
-    if(snapshot.empty){ lista.innerHTML="Nenhum conteúdo disponível."; return; }
-
-    let count=0;
-    snapshot.forEach(doc=>{
-      const data = doc.data();
-      const titulo = data.titulo || "Sem título";
-      const descricao = data.descricao ? data.descricao.substring(0,140) : "Sem descrição";
-
-      const card = document.createElement("div");
-      card.className="post";
-      card.innerHTML = `
-        ${data.imagem ? `<img src="${data.imagem}">` : ""}
-        <h2>${titulo}</h2>
-        <p>${descricao}...</p>
-        <button onclick="abrirConteudo('${doc.id}')">Ler mais</button>
-      `;
-      lista.appendChild(card);
-
-      if(count<5){
-        const li = document.createElement("li");
-        li.textContent = titulo;
-        maisLidosEl.appendChild(li);
-        count++;
-      }
-    });
-
-  } catch(e){
-    lista.innerHTML = "Erro ao carregar artigos: "+e.message;
-  }
-}
-
-function abrirConteudo(id){
-  setCookie("conteudoId", id, 1);
-  window.location.href="conteudo.html";
-}
-
-function openSidebar(){
-  document.getElementById("sidebar").style.width = "250px";
-}
-function closeSidebar(){
-  document.getElementById("sidebar").style.width = "0";
-}
-
-carregarArtigos();
-</script>
 </body>
 </html>
